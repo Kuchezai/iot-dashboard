@@ -93,9 +93,8 @@ func (p *PrometheusMetricStorage) SetIsMoving(isMoving bool, dateTime time.Time)
 	}
 
 	go func() {
-		for range time.Tick(30 * time.Second) {
-			p.isMovingMetric.Set(0)
-		}
+		time.Sleep(30 * time.Second)
+		p.isMovingMetric.Set(0)
 	}()
 
 	p.isMovingMetric.Set(value)
