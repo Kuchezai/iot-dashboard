@@ -1,0 +1,101 @@
+asyncapi: '2.4.0'
+info:
+  title: 'IOT Car API'
+  version: '1.0.0'
+servers:
+  production:
+    url: 'tcp://broker.emqx.io:1883'
+    protocol: 'mqtt'
+channels:
+  test/topic:
+    subscribe:
+      summary: 'Receive liquid level data'
+      operationId: 'liquidLevelData'
+      message:
+        $ref: '#/components/messages/LiquidLevelData'
+  test/coordinate:
+    subscribe:
+      summary: 'Receive GPS coordinates'
+      operationId: 'coordinatesData'
+      message:
+        $ref: '#/components/messages/CoordinatesData'
+  test/pressure:
+    subscribe:
+      summary: 'Receive pressure data'
+      operationId: 'pressureData'
+      message:
+        $ref: '#/components/messages/PressureData'
+  test/moving:
+    subscribe:
+      summary: 'Receive moving status'
+      operationId: 'movingData'
+      message:
+        $ref: '#/components/messages/MovingData'
+components:
+  messages:
+    LiquidLevelData:
+      contentType: 'application/json'
+      payload:
+        type: 'object'
+        properties:
+          sensor_id:
+            type: 'string'
+          timestamp:
+            type: 'string'
+            format: 'date-time'
+          data:
+            type: 'object'
+            properties:
+              liquid_level:
+                type: 'number'
+                format: 'float'
+    CoordinatesData:
+      contentType: 'application/json'
+      payload:
+        type: 'object'
+        properties:
+          sensor_id:
+            type: 'string'
+          timestamp:
+            type: 'string'
+            format: 'date-time'
+          data:
+            type: 'object'
+            properties:
+              latitude:
+                type: 'number'
+                format: 'float'
+              longitude:
+                type: 'number'
+                format: 'float'
+    PressureData:
+      contentType: 'application/json'
+      payload:
+        type: 'object'
+        properties:
+          sensor_id:
+            type: 'string'
+          timestamp:
+            type: 'string'
+            format: 'date-time'
+          data:
+            type: 'object'
+            properties:
+              pressure:
+                type: 'number'
+                format: 'float'
+    MovingData:
+      contentType: 'application/json'
+      payload:
+        type: 'object'
+        properties:
+          sensor_id:
+            type: 'string'
+          timestamp:
+            type: 'string'
+            format: 'date-time'
+          data:
+            type: 'object'
+            properties:
+              is_moving:
+                type: 'boolean'
