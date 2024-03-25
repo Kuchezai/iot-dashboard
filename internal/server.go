@@ -67,7 +67,7 @@ func setupMQTTClient(listener MQTTListener) mqtt.Client {
 		"test/topic":      0,
 		"test/coordinate": 0,
 		"test/pressure":   0,
-		"test/moving":     0,
+		"test/is_moving":  0,
 	}, listener.MessageRouter); token.Wait() && token.Error() != nil {
 		fmt.Println(token.Error())
 		os.Exit(1)

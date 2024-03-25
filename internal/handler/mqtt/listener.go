@@ -38,7 +38,7 @@ func (l *MQTTListener) MessageRouter(client mqtt.Client, msg mqtt.Message) {
 		l.coordinatesHandler(msg)
 	case "test/pressure":
 		l.pressureHandler(msg)
-	case "test/moving":
+	case "test/is_moving":
 		l.movingHandler(msg)
 	}
 

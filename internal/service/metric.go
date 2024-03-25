@@ -46,12 +46,14 @@ func (s *MetricService) SetLocation(latitude, longitude float64, dateTime time.T
 }
 
 func (s *MetricService) SetIsMoving(isMoving bool, dateTime time.Time) error {
+	s.storage.SetIsMoving(isMoving, dateTime)
+
 	if isMoving && !s.isValidDateTime(dateTime) {
 		message := fmt.Sprintf("❗❗❗Alert! The provided time (%s) is not within the allowed range.", dateTime.Format(time.RFC3339))
 		s.telegramSender.SendMessage(message)
 	}
 
-	return s.storage.SetIsMoving(isMoving, dateTime)
+	return nil
 }
 
 func (s *MetricService) isValidDateTime(dateTime time.Time) bool {
