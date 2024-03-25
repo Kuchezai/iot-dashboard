@@ -12,8 +12,8 @@ ___
 ### Deploy
 
 ```
-git clone
-cd
+git clone https://github.com/Kuchezai/iot-dashboard.git
+cd iot-dashboard
 docker-compose up --build
 ```
 Если нет реальных IOT-устройств, то можно запустить их эмуляцию через скрипты, расположенные в *iot_devices/*
